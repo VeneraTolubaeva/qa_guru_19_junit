@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -31,7 +32,7 @@ public class LemurrrParamTest {
             "Ветаптека, Ветеринарная аптека"
     })
     @ParameterizedTest(name = "Тестирование раздела {0}")
-    void LemurrrHeadersBtnTest(String btnHeader, String result) {
+    void lemurrrHeadersBtnTest(String btnHeader, String result) {
         open("https://lemurrr.ru/");
         //$(".city-confirmation__modal").$(byText("Да, спасибо")).click();
         $$x("//ul//li//a").find(Condition.text(btnHeader)).click();
@@ -51,5 +52,23 @@ public class LemurrrParamTest {
     void loyaltyTest(List<String> result) {
         open("https://lemurrr.ru/loyalty");
         $$x("//ul[@class='menu__list']/li").filter(visible).shouldHave(CollectionCondition.texts(result));
+    }
+    @ValueSource(strings = {
+            "ADA",
+            "Advocat",
+            "AiryVest",
+            "Alcott",
+            "Alleva",
+            "AlphaPet"
+    }
+    )
+    @ParameterizedTest(name = "тестирование кнопки {0} на странице бренды")
+    void brandwallTest(String brandBtn) {
+
+        open("https://lemurrr.ru/brandwall");
+
+        $$x("//li[@class='brands__entry'][3]/div[@class='entry__brands']//ul//li[@class='column__entry']/a").findBy(Condition.text(brandBtn)).click();
+        $("h1").shouldHave(Condition.text(brandBtn));
+
     }
 }
