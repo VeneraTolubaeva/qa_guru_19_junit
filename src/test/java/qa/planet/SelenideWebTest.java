@@ -20,7 +20,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class SelenideWebTest {
     @BeforeEach
     void setup() {
-        open("https://ru.selenide.org");
+        open("https://selenide.org");
     }
     static Stream<Arguments> selenideLocaleTest() {
         return Stream.of(
