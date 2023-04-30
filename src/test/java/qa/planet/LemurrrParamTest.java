@@ -63,7 +63,7 @@ public class LemurrrParamTest {
     }
     )
     @ParameterizedTest(name = "тестирование кнопки {0} на странице бренды")
-    void brandwallTest(String brandBtn) {
+    void brandWallTest(String brandBtn) {
 
         open("https://lemurrr.ru/brandwall");
 
